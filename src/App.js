@@ -5,20 +5,20 @@ import {Map} from "./Map";
 import {Profile} from "./Profile";
 import './App.css';
 
-const PAGES = {
-  login: <Login onMapRedirect={() => this.navigateTo("map")} />,
-  registration: <Registration onMapRedirect={() => this.navigateTo("map")} />,
-  map: <Map />,
-  profile: <Profile />
-}
-
 class App extends React.Component {
-  state = { currentPage: "map" };
+  state = { currentPage: "login" };
 
   navigateTo = (page) => {
     this.setState({ currentPage: page });
   }
   render() {
+    const PAGES = {
+      login: <Login onMapRedirect={() => this.navigateTo("map")} />,
+      registration: <Registration onMapRedirect={() => this.navigateTo("map")} />,
+      map: <Map />,
+      profile: <Profile />
+    }
+
     return (
       <>
         <header>
