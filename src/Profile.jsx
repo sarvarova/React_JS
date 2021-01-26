@@ -1,5 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { withAuth, AuthContext } from "./AuthContext";
 
 export const Profile = () => {
-  return <h1>Профиль</h1>
+  const { isLoggedIn } = useContext(AuthContext);
+  console.log(isLoggedIn);
+
+  return <h1>Profile</h1>
 }
+
+export const ProfileWithAuth = withAuth(Profile);
