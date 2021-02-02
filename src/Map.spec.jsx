@@ -1,7 +1,7 @@
 import React from "react";
 import { Map } from "./Map";
 import { render } from "@testing-library/react";
-import mapbox from "mapbox-gl";
+import mapbox from "mapbox-gl"
 
 jest.mock("mapbox-gl", () => ({
   Map: jest.fn(() => ({ remove: () => {} })),

@@ -7,4 +7,4 @@ describe("Profile", () => {
     const { container } = render(<Profile />);
     expect(container.innerHTML).toMatch("Profile")
   });
-});
+})
