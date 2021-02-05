@@ -7,7 +7,6 @@ export class Map extends Component {
 
   componentDidMount() {
     mapboxgl.accessToken = "pk.eyJ1IjoibmFkamFzYXJ2YXJvdmEiLCJhIjoiY2trOG53M3JmMHBpejJvbXYxYm0yMmUyZyJ9.4TSsV10hjZhHPcCTObkDbw";
-
     this.map = new mapboxgl.Map({
       container: this.mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v9",
@@ -16,11 +15,15 @@ export class Map extends Component {
     });
   }
 
+  componentWillUnmount() {
+    this.map.remove();
+  }
+
   render() {
     return (
         <div className="map-wrapper">
           <div data-testid="map" className="map" ref={this.mapContainer} />
         </div>
     );
-}
+  }
 }
