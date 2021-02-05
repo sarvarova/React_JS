@@ -15,11 +15,15 @@ export class Map extends Component {
     });
   }
 
+  componentWillUnmount() {
+    this.map.remove();
+  }
+
   render() {
     return (
         <div className="map-wrapper">
           <div data-testid="map" className="map" ref={this.mapContainer} />
         </div>
     );
-}
+  }
 }

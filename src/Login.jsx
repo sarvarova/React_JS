@@ -23,9 +23,9 @@ export class Login extends Component {
           <form onSubmit={this.authenticate}>
             <h1>Войти</h1>
             <label htmlFor="email">Email:</label>
-            <input id="email" type="email" name="email" size="28" /><br></br>
+            <input id="email" type="email" name="email" size="28" />
             <label htmlFor="password">Password:</label>
-            <input id="password" type="password" name="password" size="28" /><br></br>
+            <input id="password" type="password" name="password" size="28" />
             <button type="submit">Log in</button>
           </form>
         )
@@ -37,8 +37,7 @@ export class Login extends Component {
 
 Login.propTypes = {
   isLoggedIn: PropTypes.bool,
-  logIn: PropTypes.string,
-  navigate: PropTypes.func,
+  authenticate: PropTypes.func,
 };
 
 export const LoginWithConnect = connect(

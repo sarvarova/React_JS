@@ -3,8 +3,6 @@ import {LoginWithConnect} from "./Login";
 //import {RegistrationWithAuth} from "./Registration";
 import {Map} from "./Map";
 import { ProfileWithConnect } from "./Profile";
-import PropTypes from 'prop-types';
-import { connect } from "react-redux";
 import { Switch, Route, Link } from "react-router-dom";
 import { PrivateRoute } from "./PrivateRoute";
 import './App.css';
@@ -42,10 +40,4 @@ export class App extends React.Component {
   }
 }
 
- App.propTypes = {
-  isLoggedIn: PropTypes.bool
-};
-
-export default connect(
-  (state) => ({ isLoggedIn: state.auth.isLoggedIn })
-  )(App);
+export default (App);
