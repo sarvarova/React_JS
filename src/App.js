@@ -1,8 +1,8 @@
 import React from "react";
 import {LoginWithConnect} from "./Login";
-//import {RegistrationWithAuth} from "./Registration";
-import {Map} from "./Map";
-import { ProfileWithConnect } from "./Profile";
+import {RegistrationWithConnect} from "./Registration";
+import Map from "./Map";
+import Profile from "./Profile/Profile";
 import { Switch, Route, Link } from "react-router-dom";
 import { PrivateRoute } from "./PrivateRoute";
 import './App.css';
@@ -30,8 +30,9 @@ export class App extends React.Component {
           <section>
             <Switch>
               <Route exact path="/" component={LoginWithConnect} />
+              <Route path="/registration" component={RegistrationWithConnect} />
               <PrivateRoute path="/map" component={Map} />
-              <PrivateRoute path="/profile" component={ProfileWithConnect} />
+              <PrivateRoute path="/profile" component={Profile} />
             </Switch>
           </section>
         </main>

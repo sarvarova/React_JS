@@ -1,22 +1,19 @@
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./reducers";
-import { authMiddleware, cardMiddleware } from "./authMiddleware";
-import { loadState, saveState } from "./localStorage";
+import createSagaMiddleware from "redux-saga";
+import { authSaga  } from "./sagas/authSaga";
+import { registrationSaga } from "./sagas/registrationSaga";
+import { profileSaga } from "./sagas/profileSaga";
+import {addressesSaga} from './sagas/addressesSaga';
+import {routeSaga} from './sagas/routeSaga';
+//import { loadState, saveState } from "./localStorage";
 
-//export const store = createStore(rootReducer, compose(applyMiddleware(authMiddleware, cardMiddleware )));
+const sagaMiddleware = createSagaMiddleware();
 
-export const createAppStore = () => {
-    const initialState = loadState();
-  
-    const store = createStore(
-      rootReducer,
-      initialState,
-      compose(applyMiddleware(authMiddleware, cardMiddleware))
-    );
-  
-    store.subscribe(() => {
-        saveState(store.getState());
-      });
-  
-    return store;
-  };
+export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware ));
+
+sagaMiddleware.run(authSaga);
+sagaMiddleware.run(registrationSaga);
+sagaMiddleware.run(profileSaga);
+sagaMiddleware.run(addressesSaga);
+sagaMiddleware.run(routeSaga);

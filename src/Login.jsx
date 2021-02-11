@@ -16,18 +16,29 @@ export class Login extends Component {
       <>
       {
         this.props.isLoggedIn ? (
-          <p>
-            You are logged in. <Link to="/profile">Go to profile</Link>
-          </p>
+        <p>
+        You are logged in. <Link to="/profile">Go to profile </Link>
+      </p>
         ) : (
-          <form onSubmit={this.authenticate}>
-            <h1>Войти</h1>
-            <label htmlFor="email">Email:</label>
-            <input id="email" type="email" name="email" size="28" />
-            <label htmlFor="password">Password:</label>
-            <input id="password" type="password" name="password" size="28" />
-            <button type="submit">Log in</button>
-          </form>
+
+          <div className="wrapper__login">
+            <div className="container__login">
+              <h2 className="login__title">Войти</h2>
+
+                <div className="login-reg">
+                  <span className="login-reg__text">Новый пользователь?</span>
+                  <Link to="/registration">Зарегистрируйтесь</Link>
+                </div>
+
+                <form onSubmit={this.authenticate}>
+                  <label htmlFor="email">Email:</label>
+                  <input id="email" type="email" name="email" size="28" />
+                  <label htmlFor="password">Password:</label>
+                  <input id="password" type="password" name="password" size="28" />
+                  <button type="submit">Log in</button>
+                </form>
+            </div>
+          </div>
         )
         }
       </>

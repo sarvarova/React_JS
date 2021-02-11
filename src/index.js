@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
-import { createAppStore } from "./store";
+import { store } from "./store";
 import { Provider } from "react-redux";
 
-const store = createAppStore();
+//const store = createAppStore();
 
 ReactDOM.render(
   <React.StrictMode>
