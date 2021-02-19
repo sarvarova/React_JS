@@ -19,10 +19,10 @@ export const authenticate = (email, password) => ({
 
 // Registration
 
-export const UNAUTHENTICATE = "UNAUTHENTICATE";
+export const HANDLESIGN_UP = "HANDLESIGN_UP";
 
-export const unauthenticate = (email, password, name, surname) => ({
-  type: UNAUTHENTICATE,
+export const  handleSignUp = (email, password, name, surname) => ({
+  type: HANDLESIGN_UP,
   payload: { email, password, name, surname },
 });
 
@@ -55,7 +55,7 @@ export const showError = (error) => ({
 
 // Map
 
-export const FETCH_ADDRESSES = "FETCH_ADDRESSES";
+export const SEND_ADDRESSES = "SEND_ADDRESSES";
 export const GET_ADDRESSES = "GET_ADDRESSES";
 
 export const getAddresses = (addresses) => ({
@@ -63,8 +63,8 @@ export const getAddresses = (addresses) => ({
   payload: addresses
 });
 
-export const fetchAddresses = () => ({
-  type: FETCH_ADDRESSES,
+export const sendAddresses = () => ({
+  type: SEND_ADDRESSES,
 })
 
 export const SEND_ROUTE = "SEND_ROUTE";
@@ -79,3 +79,36 @@ export const saveCoords = (coords) => ({
   type: SAVE_COORDS,
   payload: coords
 })
+
+  
+/*export const CARD_ADD = "CARD_ADD";
+export const CARD_UPDATE = "CARD_UPDATE";
+export const CARD_CLEAR = "CARD_CLEAR";
+export const TOKEN = "TOKEN";
+export const ERROR = "ERROR";
+
+export const cardAdd = (payload) => ({
+  type: CARD_ADD,
+  payload,
+});
+
+export const cardUpdate = (payload) => ({
+  type: CARD_UPDATE,
+  payload,
+});
+
+export const setToken = (token) => ({
+  type: TOKEN,
+  payload: token,
+});
+
+export const cardClear = () => ({ 
+  type: CARD_CLEAR 
+});
+
+/*export const CARD_ADD = "CARD_ADD";
+
+export const cardAdd = (number, expiry, name, cvc) => ({
+  type: CARD_ADD,
+  payload: { number, expiry, name, cvc },
+});*/

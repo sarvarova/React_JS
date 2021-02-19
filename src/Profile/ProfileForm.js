@@ -14,19 +14,20 @@ class ProfileForm extends React.Component {
     cvc: "",
   };
 
-  formRef = React.createRef();
-
   componentDidMount() {
     this.props.loadProfile(this.props.token);
     const { number, date, name, cvc } = this.props;
     this.setState({number, date, name, cvc});
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props !== prevProps) {
-      const { number, date, name, cvc } = this.props;
-      this.setState({number, date, name, cvc});
+  static getDerivedStateFromProps(props, state) {
+    if (props !== state) {
+      const { number, date, name, cvc } = props;
+      return {
+        number, date, name, cvc
+      }
     }
+    return null;
   }
 
   render() {

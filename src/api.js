@@ -27,12 +27,14 @@ export const serverProfile = async (cardNumber, expiryDate, cardName, cvc, token
       cvc,
       token,
     }),
-  }).then((res) => res.json());
+  }).then((res) => res.json())
+    .catch((error) => console.error(error));
 };
 
 export const loadServerProfile = async (token) => {
   return fetch(`https://loft-taxi.glitch.me/card?token=${token}`)
   .then((res) => res.json())
+  .catch((error) => console.error(error));
 };
 
 export const serverAddresses = () => {
@@ -44,5 +46,5 @@ export const serverAddresses = () => {
 export const serverRoute = async (address1, address2) => {
   return fetch(`https://loft-taxi.glitch.me/route?address1=${address1}&address2=${address2}`)
   .then(res => res.json())
+  .catch((error) => console.error(error));
 };
-  

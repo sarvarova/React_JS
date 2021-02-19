@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import {PropTypes} from 'prop-types';
-import { unauthenticate } from "./actions";
+import { handleSignUp } from "./actions";
 import { connect } from "react-redux";
 
 export class Registration extends Component {
-  unauthenticate = (event) => {
+  handleSignUp = (event) => {
     event.preventDefault()
     const { email, password, name, surname } = event.target;
-    this.props.unauthenticate(
+    this.props.handleSignUp(
       email.value,
       password.value,
       name.value,
@@ -34,7 +34,7 @@ export class Registration extends Component {
               <Link to="/login">Войти</Link>
             </div>
 
-            <form onSubmit={this.unauthenticate}>
+            <form onSubmit={this.handleSignUp}>
               <div className="registration-email__container">
                 <label htmlFor="email">Адрес электронной почты</label><br />
                 <input id="email" type="email" name="email" size="28" />
@@ -63,10 +63,10 @@ export class Registration extends Component {
 
 Registration.propTypes = {
   isLoggedIn: PropTypes.bool,
-  unauthenticate: PropTypes.func,
+  handleSignUp: PropTypes.func,
 };
 
 export const RegistrationWithConnect = connect(
   (state) => ({isLoggedIn: state.auth.isLoggedIn}),
-  { unauthenticate }
+  { handleSignUp }
 )(Registration);

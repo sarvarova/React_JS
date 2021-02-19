@@ -1,17 +1,18 @@
 import { takeEvery, call, put } from "redux-saga/effects";
-import { UNAUTHENTICATE, logIn } from "../actions";
+import { HANDLESIGN_UP, logIn } from "../actions";
 import { serverRegistration } from "../api";
 
-function* unauthenticateSaga(action) {
+function* handleSignUpSaga(action) {
   const success = yield call(serverRegistration, action.payload);
 
   if (success) {
     yield put(logIn(success.token));
+    console.log('registration successful')
   } else {
     alert("Пользователь уже существует");
   }
 }
 
 export function* registrationSaga() {
-  yield takeEvery(UNAUTHENTICATE, unauthenticateSaga);
+  yield takeEvery(HANDLESIGN_UP, handleSignUpSaga);
 }

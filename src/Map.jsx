@@ -1,25 +1,25 @@
 import mapboxgl from "mapbox-gl";
 import React from "react";
 import { connect } from "react-redux";
-import { fetchAddresses, sendRoute } from "./actions";
+import { sendAddresses, sendRoute, saveCoords } from "./actions";
+import PropTypes from "prop-types";
 import FormLabel from "@material-ui/core/FormLabel";
 import Button from "@material-ui/core/Button";
+//import isEqual from "lodash";
 
 class Map extends React.Component {
   map = React.createRef();
   mapbox;
   state = {
     startingPoint: null,
-    endingPoint: null,
-    filteredArray: [],
+    endingPoint: null
   };
 
-  filterArray = () => {
-    const arr = this.props.addressesList.filter(
-      (item) =>
-        item !== this.state.startingPoint && item !== this.state.endingPoint
-    );
-    return this.setState({ filteredArray: arr });
+  static propTypes = {
+    coords: PropTypes.array,
+    addressesList: PropTypes.array,
+    sendAddresses: PropTypes.func,
+    sendRoute: PropTypes.func,
   };
 
   componentDidMount() {
@@ -28,17 +28,23 @@ class Map extends React.Component {
     this.mapbox = new mapboxgl.Map({
       container: this.map.current,
       style: "mapbox://styles/mapbox/streets-v11",
-      center: [30.3056504, 59.9429126],
+      center: [30.3056504, 59.9429126], 
       zoom: 10
     });
-
-    this.props.fetchAddresses();
+    this.props.sendAddresses();
   }
+  
 
   componentDidUpdate(prevProps) {
-    if (this.props.coords !== prevProps.coords) {
+    const isEqual = require('lodash.isequal');
+
+    if (!isEqual(this.props.coords, prevProps.coords)) {
       this.drawRoute(this.mapbox, this.props.coords);
     }
+  }
+
+  componentWillUnmount() {
+  this.map.remove();
   }
 
   drawRoute = (map, coordinates) => {
@@ -75,7 +81,7 @@ class Map extends React.Component {
   render() {
     return (
       <div className="app-map">
-        {localStorage.getItem("cardData") ? (
+        {localStorage.getItem("state") ? (
           <form
             data-testid="form"
             className="app-map__form app-form"
@@ -170,37 +176,4 @@ class Map extends React.Component {
   }
 }
 
-export default connect((state) => state.map, { fetchAddresses, sendRoute })(
-  Map
-);
-
-
-/*import React, {Component} from 'react'
-import mapboxgl from "mapbox-gl";
-
-export class Map extends Component {
-  map = null;
-  mapContainer = React.createRef();
-
-  componentDidMount() {
-    mapboxgl.accessToken = "pk.eyJ1IjoibmFkamFzYXJ2YXJvdmEiLCJhIjoiY2trOG53M3JmMHBpejJvbXYxYm0yMmUyZyJ9.4TSsV10hjZhHPcCTObkDbw";
-    this.map = new mapboxgl.Map({
-      container: this.mapContainer.current,
-      style: "mapbox://styles/mapbox/streets-v9",
-      center: [30.3056504, 59.9429126], 
-      zoom: 10,
-    });
-  }
-
-  componentWillUnmount() {
-    this.map.remove();
-  }
-
-  render() {
-    return (
-        <div className="map-wrapper">
-          <div data-testid="map" className="map" ref={this.mapContainer} />
-        </div>
-    );
-  }
-}*/
+export default connect((state) => state.map, { sendAddresses, sendRoute, saveCoords })(Map);
