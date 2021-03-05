@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware, compose } from "redux";
-import rootReducer from "./reducers";
+import rootReducer from "./modules/reducers";
 import createSagaMiddleware from "redux-saga";
-import { authSaga  } from "./sagas/authSaga";
-import { registrationSaga } from "./sagas/registrationSaga";
-import { profileSaga } from "./sagas/profileSaga";
-import {addressesSaga} from './sagas/addressesSaga';
-import {routeSaga} from './sagas/routeSaga';
+import { authSaga  } from "./modules/sagas/authSaga";
+import { registrationSaga } from "./modules/sagas/registrationSaga";
+import { profileSaga } from "./modules/sagas/profileSaga";
+import {addressesSaga} from './modules/sagas/addressesSaga';
+import {routeSaga} from './modules/sagas/routeSaga';
 import { loadState, saveState } from "./localStorage";
 
 const sagaMiddleware = createSagaMiddleware();

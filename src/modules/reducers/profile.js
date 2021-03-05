@@ -1,4 +1,4 @@
-import { SAVE_TO_STORE, ERROR } from "../actions";
+import { HANDLE_PROFILE_SUBMIT, ERROR } from "../actions";
 
 const initialState = {
   number: "",
@@ -10,7 +10,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SAVE_TO_STORE:
+    case HANDLE_PROFILE_SUBMIT:
       return action.payload;
     case ERROR:
       return action.payload;

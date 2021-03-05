@@ -1,5 +1,5 @@
 import { takeEvery, call } from "redux-saga/effects";
-import { SAVE_PROFILE } from "../actions";
+import { HANDLE_PROFILE_SUBMIT } from "../actions";
 import { serverProfile } from "../api";
 
 export function* saveProfileSaga(action) {
@@ -9,13 +9,14 @@ export function* saveProfileSaga(action) {
     if (result.success) {
       console.log('successful');
     } else {
-      throw new Error('Сохранение не удалось')
+      throw new Error('Cохранение не удалось')
     }
   } catch (error) {
     console.log('error');
+    
   }
 }
 
 export function* profileSaga() {
-  yield takeEvery(SAVE_PROFILE, saveProfileSaga);
-}
+  yield takeEvery(HANDLE_PROFILE_SUBMIT, saveProfileSaga)}
+

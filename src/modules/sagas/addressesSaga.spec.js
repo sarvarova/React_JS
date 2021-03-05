@@ -7,7 +7,7 @@ jest.mock('../api', () => ({
 }));
 
 describe("addressesSaga", () => {
-    describe("#FETCH_ADDRESSES", () => {
+    describe("#SEND_ADDRESSES", () => {
         it('fetches addresses through api', async () => {
             const dispatched = await recordSaga(
                 showAddressesSaga,

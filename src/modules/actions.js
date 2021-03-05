@@ -28,25 +28,26 @@ export const  handleSignUp = (email, password, name, surname) => ({
 
 // Profile
 
-export const LOAD_PROFILE = "LOAD_PROFILE";
-export const SAVE_PROFILE = "SAVE_PROFILE";
-export const SAVE_TO_STORE = "SAVE_TO_STORE";
+/*export const LOAD_PROFILE = "LOAD_PROFILE";
+export const SAVE_PROFILE = "SAVE_PROFILE";*/
+export const HANDLE_PROFILE_SUBMIT  = "HANDLE_PROFILE_SUBMIT";
 export const ERROR = "ERROR";
 
-export const loadProfile = (token) => ({
+export const handleProfileSubmit = (number, date, name, cvc, token) => ({
+  type: HANDLE_PROFILE_SUBMIT,
+  payload: { number, date, name, cvc, token },
+});
+
+/*export const loadProfile = (token) => ({
   type: LOAD_PROFILE,
   payload: token
 }) 
 
-export const saveProfile = (number, date, name, cvc, token) => ({
+export const saveProfile = () => ({
   type: SAVE_PROFILE,
-  payload: { number, date, name, cvc, token },
 });
 
-export const saveCardToStore = (number, date, name, cvc, token) => ({
-  type: SAVE_TO_STORE,
-  payload: { number, date, name, cvc, token },
-});
+*/
 
 export const showError = (error) => ({
   type: ERROR,
@@ -79,36 +80,3 @@ export const saveCoords = (coords) => ({
   type: SAVE_COORDS,
   payload: coords
 })
-
-  
-/*export const CARD_ADD = "CARD_ADD";
-export const CARD_UPDATE = "CARD_UPDATE";
-export const CARD_CLEAR = "CARD_CLEAR";
-export const TOKEN = "TOKEN";
-export const ERROR = "ERROR";
-
-export const cardAdd = (payload) => ({
-  type: CARD_ADD,
-  payload,
-});
-
-export const cardUpdate = (payload) => ({
-  type: CARD_UPDATE,
-  payload,
-});
-
-export const setToken = (token) => ({
-  type: TOKEN,
-  payload: token,
-});
-
-export const cardClear = () => ({ 
-  type: CARD_CLEAR 
-});
-
-/*export const CARD_ADD = "CARD_ADD";
-
-export const cardAdd = (number, expiry, name, cvc) => ({
-  type: CARD_ADD,
-  payload: { number, expiry, name, cvc },
-});*/
