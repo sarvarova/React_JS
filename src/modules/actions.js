@@ -1,4 +1,3 @@
-// Login
 export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
 export const AUTHENTICATE = "AUTHENTICATE";
@@ -17,8 +16,6 @@ export const authenticate = (email, password) => ({
   payload: { email, password },
 });
 
-// Registration
-
 export const HANDLESIGN_UP = "HANDLESIGN_UP";
 
 export const  handleSignUp = (email, password, name, surname) => ({
@@ -26,10 +23,6 @@ export const  handleSignUp = (email, password, name, surname) => ({
   payload: { email, password, name, surname },
 });
 
-// Profile
-
-/*export const LOAD_PROFILE = "LOAD_PROFILE";
-export const SAVE_PROFILE = "SAVE_PROFILE";*/
 export const HANDLE_PROFILE_SUBMIT  = "HANDLE_PROFILE_SUBMIT";
 export const ERROR = "ERROR";
 
@@ -38,23 +31,11 @@ export const handleProfileSubmit = (number, date, name, cvc, token) => ({
   payload: { number, date, name, cvc, token },
 });
 
-/*export const loadProfile = (token) => ({
-  type: LOAD_PROFILE,
-  payload: token
-}) 
-
-export const saveProfile = () => ({
-  type: SAVE_PROFILE,
-});
-
-*/
 
 export const showError = (error) => ({
   type: ERROR,
   payload: error
 });
-
-// Map
 
 export const SEND_ADDRESSES = "SEND_ADDRESSES";
 export const GET_ADDRESSES = "GET_ADDRESSES";

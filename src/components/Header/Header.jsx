@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logOut, sendAddresses } from "../../modules/actions";
 import { Link} from "react-router-dom";
 import styles from "./Header.module.css";
 import { Logo } from "loft-taxi-mui-theme";
-// import Link from "@material-ui/core/Link";
 
 class Header extends React.Component {
   static propTypes = {
     logOut: PropTypes.func,
+    sendAddresses: PropTypes.func,
   };
 
   render() {

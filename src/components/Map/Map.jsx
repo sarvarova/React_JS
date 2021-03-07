@@ -1,15 +1,14 @@
 import mapboxgl from "mapbox-gl";
 import React from "react";
 import { connect } from "react-redux";
-import { sendAddresses, sendRoute, saveCoords } from "../../modules/actions";
+import { getAddresses, sendRoute, saveCoords } from "../../modules/actions";
 import PropTypes from "prop-types";
 import styles from "./Map.module.css";
 import MapForm from "./MapForm";
 import Button from "@material-ui/core/Button";
 
 class Map extends React.Component {
-  map = React.createRef();
-  mapbox;
+  mapContainer = React.createRef();
   state = {
     showMessage: false,
   };
@@ -17,41 +16,54 @@ class Map extends React.Component {
   static propTypes = {
     coords: PropTypes.array,
     addressesList: PropTypes.array,
-    sendAddresses: PropTypes.func,
+    getAddresses: PropTypes.func,
     sendRoute: PropTypes.func,
   };
 
   componentDidMount() {
+    const {coords} = this.props;
+
     mapboxgl.accessToken =
     "pk.eyJ1IjoibmFkamFzYXJ2YXJvdmEiLCJhIjoiY2trOG53M3JmMHBpejJvbXYxYm0yMmUyZyJ9.4TSsV10hjZhHPcCTObkDbw";
-    this.mapbox = new mapboxgl.Map({
-      container: this.map.current,
+    this.map = new mapboxgl.Map({
+      container: this.mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v11",
-      center: [30.3056504, 59.9429126], 
-      zoom: 10
+      center: [30.3056504, 59.9429126],
+      zoom: 10,
     });
-    this.props.sendAddresses();
+
+    this.map.on('load', () => {
+      if (coords) {
+        this.props.getAddresses();
+      }
+    })
   }
 
   componentDidUpdate(prevProps) {
     const isEqual = require('lodash.isequal');
     const {coords} = this.props;
-		
-    if (!isEqual(coords, prevProps)) {
-      if (this.props.coords && this.props.coords !== prevProps.coords) {
-        this.drawRoute(this.mapbox, this.props.coords);
-        this.setState({ showMessage: true });
-      }
-  }
-}
+    
+    if (this.map.getLayer("route")) {
+      this.map.removeLayer("route");
+    }
 
-  /*componentWillUnmount() {
+    if (this.map.getSource("route")) {
+      this.map.removeSource("route");
+      this.props.saveCoords(null);
+    }
+
+    if (!isEqual(coords, prevProps.coords)) {
+      this.drawRoute(this.map, this.props.coords);
+    }
+  }
+  
+  componentWillUnmount() {
     this.map.remove();
-    }*/
+    }
 
   drawRoute = (map, coordinates) => {
     map.flyTo({
-      center: coordinates[0],
+    center: coordinates[0],
       zoom: 12,
     });
 
@@ -80,7 +92,7 @@ class Map extends React.Component {
     });
   };
 
-  render() {
+  render() {    
     return (
       <div className={styles.map}>
         {this.state.showMessage && (
@@ -97,16 +109,7 @@ class Map extends React.Component {
                 color="primary"
                 elevation={0}
                 type="submit"
-                  onClick={(e) => {
-                    if (this.mapbox.getLayer("route")) {
-                      this.mapbox.removeLayer("route");
-                      this.setState({ showMessage: false });
-                    }
-                    if (this.mapbox.getSource("route")) {
-                      this.mapbox.removeSource("route");
-                      this.props.saveCoords(null);
-                    }
-                  }}
+                  
                 >
                   Сделать новый заказ
                 </Button>
@@ -118,7 +121,7 @@ class Map extends React.Component {
           <MapForm />
         )}
         <div
-          ref={this.map}
+          ref={this.mapContainer}
           style={{ width: "100vw", height: "100vh" }}
           className="app-map__map"
           data-testid="map"
@@ -129,7 +132,7 @@ class Map extends React.Component {
 }
 
 const MapConnect = connect((state) => state.map, {
-  sendAddresses,
+  getAddresses,
   sendRoute,
   saveCoords,
 })(Map);

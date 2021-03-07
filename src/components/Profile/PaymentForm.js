@@ -125,6 +125,6 @@ export const PaymentForm = ({ handleSubmit, register, errors }) => {
   );
 }
 
-PaymentForm.defaultProps = {
+PaymentForm.propProps = {
 errors: {}
 };

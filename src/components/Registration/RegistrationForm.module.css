@@ -57,22 +57,3 @@
     margin-right: 0;
 }
 
-/*.formInput {
-    border: none;
-    background-color: transparent;
-    border-bottom: 1px solid gray;
-    padding: 7px 0;
-    font-size: 15px;
-}
-
-.formLabel:hover .formInput {
-    border-bottom-color: #0074ea;    
-}
-
-.formInput:active,
-.formInput:focus {
-    outline: none;
-    border-bottom-color: #ffc700;
-}*/
-
-
