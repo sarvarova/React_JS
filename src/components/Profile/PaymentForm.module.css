@@ -1,0 +1,52 @@
+.formCols {
+    display: flex;
+    margin-bottom: 45px;
+}
+
+.formCol {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-right: 20px;
+    max-width: 380px;
+    /* border: 1px solid gray; */
+    box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    padding: 30px;
+    min-height: 231px;
+    justify-content: space-between;
+}
+
+.formCol:first-child:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "";
+    display: block;
+    width: 62px;
+    height: 33px;
+    background-image: url("../../images/maste-card.png");
+    background-repeat: no-repeat;
+}
+
+.formCol:last-child {
+    margin-right: 0;
+}
+
+.formLabel {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.formName {
+    text-align: left;
+    color: grey;
+}
+
+.formControls {
+    display: flex;
+    justify-content: center;
+}
