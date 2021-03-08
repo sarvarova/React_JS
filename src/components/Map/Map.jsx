@@ -8,6 +8,7 @@ import MapForm from "./MapForm";
 import Button from "@material-ui/core/Button";
 
 class Map extends React.Component {
+  map = null;
   mapContainer = React.createRef();
   state = {
     showMessage: false,
@@ -39,21 +40,29 @@ class Map extends React.Component {
     })
   }
 
-  componentDidUpdate(prevProps) {
-    const isEqual = require('lodash.isequal');
-    const {coords} = this.props;
-    
+  order = () => {
+
     if (this.map.getLayer("route")) {
       this.map.removeLayer("route");
+      this.setState({ showMessage: false });
     }
 
     if (this.map.getSource("route")) {
       this.map.removeSource("route");
       this.props.saveCoords(null);
+      
     }
+  };
+
+  componentDidUpdate(prevProps) {
+
+    const isEqual = require('lodash.isequal');
+    const {coords} = this.props;
 
     if (!isEqual(coords, prevProps.coords)) {
       this.drawRoute(this.map, this.props.coords);
+      this.setState({ showMessage: true });
+    
     }
   }
   
@@ -91,6 +100,7 @@ class Map extends React.Component {
       },
     });
   };
+  
 
   render() {    
     return (
@@ -109,7 +119,7 @@ class Map extends React.Component {
                 color="primary"
                 elevation={0}
                 type="submit"
-                  
+                onClick= {this.order}
                 >
                   Сделать новый заказ
                 </Button>

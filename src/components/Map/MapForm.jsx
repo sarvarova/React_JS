@@ -44,11 +44,11 @@ class MapForm extends React.Component {
                 ></RenderField>
               </label>
               <datalist id="startPoint">
-                {/*this.props.addressesList
+                {this.props.addressesList
                   .filter((item) => item !== this.state.endingPoint)
                   .map((address) => (
                     <option value={address} key={address}></option>
-                  ))*/}
+                  ))}
               </datalist>
             </div>
             <div className={styles.formRow}>
@@ -65,13 +65,13 @@ class MapForm extends React.Component {
                 ></RenderField>
               </label>
               <datalist name="endingPoint" value="choose2" id="endPoint">
-                {/*this.props.addressesList
+                {this.props.addressesList
                   .filter((item) => item !== this.state.startingPoint)
                   .map((address) => (
                     <option value={address} key={address}>
                       {address}
                     </option>
-                  ))*/}
+                  ))}
               </datalist>
             </div>
             <div className="app-form__controls">

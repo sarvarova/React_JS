@@ -125,6 +125,7 @@ export const PaymentForm = ({ handleSubmit, register, errors }) => {
   );
 }
 
-PaymentForm.propProps = {
-errors: {}
-};
+PaymentForm.propTypes = {
+  handleSubmit: PropTypes.func, 
+  errors: PropTypes.string,
+}
